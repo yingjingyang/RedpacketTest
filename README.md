@@ -1,15 +1,41 @@
-# Basic Sample Hardhat Project
+# 介绍  
+一个使用合约发送 ERC20 红包的小程序 
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
-
-Try running some of the following tasks:
-
+## 使用步骤  
+- 配置环境环境变量  
 ```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+cp .env.exmpale .env
+
+## 在 .env 文件中配置 PRIVATE_KEY, INFURA_ID, PROJECT_ID, TARGET_ACCOUNT
+## 其中 TARGET_ACCOUNT 为可以领取红包的账户地址 
 ```
+
+- 安装依赖  
+```shell
+yarn
+```
+
+- 部署 ERC20 合约  
+```shell
+npx hardhat run scripts/deploySimpleToken --network kovan
+```
+
+- 部署 RedPacket 合约  
+```shell
+npx hardhat run scripts/deployHappyRedPacket --network kovan 
+```
+
+- 创建 红包  
+```shell
+npx hardhat run scripts/createRedPacket --network kovan 
+```
+
+- 进行签名   
+```shell
+npx hardhat run scripts/signMessage
+
+## 得到的输出 "Sign Message:" 即为领取红包时需要输入的签名信息，防止恶意领取
+```
+
+- 领取红包  
+在 Etherscan 上验证合约后，即可通过 Etherscan 调用 claim 方法进行领取

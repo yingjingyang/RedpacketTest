@@ -24,7 +24,7 @@ async function main() {
   );
 
   const target_account = "0xa3F2Cf140F9446AC4a57E9B72986Ce081dB61E75";
-  var signedMsg = web3.eth.accounts.sign(target_account, process.env.PRIVATE_KEY).signature
+  var signedMsg = web3.eth.accounts.sign(process.env.TARGET_ACCOUNT, process.env.PRIVATE_KEY).signature
   console.log("Sign Message: ", signedMsg,)
 
 }
